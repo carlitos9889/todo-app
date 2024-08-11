@@ -64,7 +64,7 @@ export const LoginPage = (): JSX.Element => {
 						<p className="text-sm font-light">
 							Don`t have a account?{" "}
 							<span className="font-semibold text-blue-400">
-								<Link to="/register">Create one</Link>
+								<Link to="/auth/register">Create one</Link>
 							</span>
 						</p>
 					</section>
