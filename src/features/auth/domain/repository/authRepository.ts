@@ -5,5 +5,8 @@ export interface AuthRepository {
 		email: string,
 		password: string
 	): Promise<UserEntity>;
+
 	logout(): Promise<void>;
+
+	signInWithPopupWithGooogle(): Promise<UserEntity>;
 }

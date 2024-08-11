@@ -7,4 +7,6 @@ export interface RemoteDataSource {
 	) => Promise<UserEntity>;
 
 	logout: () => Promise<void>;
+
+	signInWithPopupWithGooogle: () => Promise<UserEntity>;
 }

@@ -9,6 +9,7 @@ interface UserState {
 interface UserActions {
 	loginWithEmailAndPassword: (user: UserEntity) => void;
 	logout: () => void;
+	signInWithPopupWithGooogle: (user: UserEntity) => void;
 }
 
 const userMiddleware = (f: StateCreator<UserState & UserActions>) =>
@@ -19,5 +20,7 @@ export const useAuthStore = create<UserState & UserActions>()(
 		user: undefined,
 		loginWithEmailAndPassword: (user) => set({ user }),
 		logout: () => set((state) => ({ ...state, user: undefined })),
+		signInWithPopupWithGooogle: (user) =>
+			set((state) => ({ ...state, user })),
 	}))
 );

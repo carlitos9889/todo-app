@@ -4,6 +4,9 @@ import { UserEntity } from "../../domain/entities/UserEntity";
 
 export class AuthRepositoryImpl implements AuthRepository {
 	constructor(private remoteDataSource: RemoteDataSource) {}
+	signInWithPopupWithGooogle(): Promise<UserEntity> {
+		return this.remoteDataSource.signInWithPopupWithGooogle();
+	}
 
 	async loginWithEmailAndPassword(
 		email: string,

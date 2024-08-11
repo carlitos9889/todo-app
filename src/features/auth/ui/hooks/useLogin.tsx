@@ -24,9 +24,15 @@ export const useLogin = ({ handleNotifyError }: Props) => {
 	const authController = useMemo(() => new AuthController(), []);
 	const navigate = useNavigate();
 
+	// --------------- store auth --------------------------//
 	const loginWithEmailAndPassword = useAuthStore(
 		(state) => state.loginWithEmailAndPassword
 	);
+
+	const signWithGoogle = useAuthStore(
+		(state) => state.signInWithPopupWithGooogle
+	);
+	// --------------- store auth --------------------------//
 
 	const handleLogin = async ({ email = "", password = "" }) => {
 		const resp = await authController.loginWithEmailAndPassword(
@@ -34,6 +40,11 @@ export const useLogin = ({ handleNotifyError }: Props) => {
 			password
 		);
 		return resp;
+	};
+
+	const handleLoginWithGoogle = async () => {
+		const user = await authController.signInWithPopupWithGooogle();
+		signWithGoogle(user);
 	};
 
 	const mutation = useMutation({
@@ -70,5 +81,11 @@ export const useLogin = ({ handleNotifyError }: Props) => {
 		},
 	});
 
-	return { formik, ...formik, mutation, ...mutation };
+	return {
+		formik,
+		handleLoginWithGoogle,
+		...formik,
+		mutation,
+		...mutation,
+	};
 };

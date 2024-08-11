@@ -12,7 +12,7 @@ export const LoginPage = (): JSX.Element => {
 		return toast.error(message);
 	};
 
-	const { formik, isPending } = useLogin({
+	const { formik, isPending, handleLoginWithGoogle } = useLogin({
 		handleNotifyError,
 	});
 
@@ -58,7 +58,7 @@ export const LoginPage = (): JSX.Element => {
 						<p className="text-sm font-light flex items-center">
 							Or, login with:{" "}
 							<span className="ml-2">
-								<GoogleIcon />
+								<GoogleIcon onClick={handleLoginWithGoogle} />
 							</span>
 						</p>
 						<p className="text-sm font-light">
