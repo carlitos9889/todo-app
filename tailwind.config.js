@@ -12,6 +12,16 @@ export default {
 			backgroundImage: {
 				"svg-red": "url('/src/assets/svg-red.svg')",
 				"svg-login": "url('/src/assets/svg-login.svg')",
+				"svg-register": "url('/src/assets/svg-register.svg')",
+			},
+			keyframes: {
+				fadeIn: {
+					"0%": { opacity: "0" },
+					"100%": { opacity: "1" },
+				},
+			},
+			animation: {
+				fadeIn: "fadeIn 0.3s ease-in-out",
 			},
 		},
 	},
