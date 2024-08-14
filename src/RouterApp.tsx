@@ -8,6 +8,7 @@ import { LoginPage, RegisterPage } from "./features/auth/ui/pages";
 import { RouterPrivate } from "./RouterPrivate";
 import { DashBoardPage } from "./features/dashboard/ui/pages";
 import { RouterPublic } from "./RouterPublic";
+import { BackgroundSvgLayout } from "./features/auth/ui/layouts";
 
 export const routerApp = createBrowserRouter(
 	createRoutesFromElements(
@@ -61,25 +62,25 @@ export const routerApp = createBrowserRouter(
 				<Route
 					path="login"
 					element={
-						<div className="min-h-screen bg-primary bg-svg-red bg-no-repeat">
+						<BackgroundSvgLayout>
 							<LoginPage />
-						</div>
+						</BackgroundSvgLayout>
 					}
 				/>
 				<Route
 					path="register"
 					element={
-						<div className="min-h-screen bg-primary bg-svg-red bg-no-repeat">
+						<BackgroundSvgLayout>
 							<RegisterPage />
-						</div>
+						</BackgroundSvgLayout>
 					}
 				/>
 				<Route
 					path="*"
 					element={
-						<div className="min-h-screen bg-primary bg-svg-red bg-no-repeat">
+						<BackgroundSvgLayout>
 							<LoginPage />
-						</div>
+						</BackgroundSvgLayout>
 					}
 				/>
 			</Route>

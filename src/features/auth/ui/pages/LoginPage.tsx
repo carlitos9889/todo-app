@@ -1,5 +1,5 @@
 import { Button, Checkbox, Input } from "@nextui-org/react";
-import { EmailIcon, GoogleIcon, LockedIcon } from "../components";
+import { EmailIcon, GoogleIcon, PasswordIcon } from "../components";
 import { Link } from "react-router-dom";
 import { AuthLayout } from "../layouts";
 import { useLogin } from "../hooks";
@@ -21,7 +21,7 @@ export const LoginPage = (): JSX.Element => {
 			<AuthLayout>
 				<form
 					onSubmit={formik.handleSubmit}
-					className="space-y-6 flex flex-col items-center justify-center px-8 pt-5 md:min-w-[340px]"
+					className="animate-fadeIn space-y-6 flex flex-col items-center justify-center px-8 pt-5 md:min-w-[340px]"
 				>
 					<h1 className="font-bold text-2xl self-start">Sign In</h1>
 					<Input
@@ -37,7 +37,7 @@ export const LoginPage = (): JSX.Element => {
 						errorMessage={formik.errors.password}
 						type="password"
 						placeholder="Enter Password"
-						startContent={<LockedIcon />}
+						startContent={<PasswordIcon />}
 						{...formik.getFieldProps("password")}
 					/>
 					<Checkbox>

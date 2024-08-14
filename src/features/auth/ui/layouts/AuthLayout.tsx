@@ -1,8 +1,16 @@
 import { FC, PropsWithChildren } from "react";
 
-export const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
+interface Props extends PropsWithChildren {
+	isRowReverse?: boolean;
+}
+
+export const AuthLayout: FC<Props> = ({ children, isRowReverse }) => {
 	return (
-		<div className="w-3/4 md:h-1/2 max-w-[800px] maw bg-white rounded-md shadow-md space-y-8 py-8 md:flex justify-evenly">
+		<div
+			className={`w-3/4 max-w-[800px]  bg-white rounded-md shadow-md space-y-8 py-8 md:flex justify-evenly ${
+				isRowReverse ? "flex-row-reverse" : ""
+			}`}
+		>
 			{children}
 		</div>
 	);
