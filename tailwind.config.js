@@ -36,6 +36,10 @@ export default {
 							DEFAULT: "#FF6767",
 							foreground: "white",
 						},
+						secondary: {
+							DEFAULT: "#3ABEFF",
+							foreground: "white",
+						},
 					},
 				},
 			},
