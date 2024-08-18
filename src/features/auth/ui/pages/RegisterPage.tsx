@@ -8,8 +8,8 @@ import {
   UserIcon,
 } from "../components";
 import { AuthLayout } from "../layouts";
-import { useRegister } from "../hooks/useRegister";
 import { useCallback } from "react";
+import { useRegister } from "../hooks";
 
 export const RegisterPage = (): JSX.Element => {
   const handleNotifyError = useCallback((message: string) => {
