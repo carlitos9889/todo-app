@@ -1,4 +1,5 @@
 import { UserEntity } from "../../../domain/entities/UserEntity";
+import { RegisterWithEmailAndPasswordParams } from "../../../domain/interfaces/interfaces";
 
 export interface RemoteDataSource {
 	loginWithEmailAndPassword: (
@@ -9,4 +10,6 @@ export interface RemoteDataSource {
 	logout: () => Promise<void>;
 
 	signInWithPopupWithGooogle: () => Promise<UserEntity>;
+
+	registerWithEmailAndPassword: (params: RegisterWithEmailAndPasswordParams) => Promise<UserEntity>;
 }

@@ -55,7 +55,7 @@ export const LoginPage = (): JSX.Element => {
 						{isPending ? "Loading..." : "Sign In"}
 					</Button>
 					<section className="w-full">
-						<p className="text-sm font-light flex items-center">
+						<p className="text-sm font-light flex items-center align-middle">
 							Or, login with:{" "}
 							<span className="ml-2">
 								<GoogleIcon onClick={handleLoginWithGoogle} />
@@ -69,7 +69,7 @@ export const LoginPage = (): JSX.Element => {
 						</p>
 					</section>
 				</form>
-				<div className="hidden md:block bg-svg-login bg-contain bg-center w-2/5 bg-no-repeat" />
+				<div className="hidden animate-fadeIn md:block bg-svg-login bg-contain bg-center w-2/5 bg-no-repeat" />
 			</AuthLayout>
 			<ToastContainer />
 		</div>

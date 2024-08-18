@@ -1,4 +1,8 @@
 import { UserEntity } from "../entities/UserEntity";
+import { RegisterWithEmailAndPasswordParams } from "../interfaces/interfaces";
+
+
+
 
 export interface AuthRepository {
 	loginWithEmailAndPassword(
@@ -9,4 +13,13 @@ export interface AuthRepository {
 	logout(): Promise<void>;
 
 	signInWithPopupWithGooogle(): Promise<UserEntity>;
+
+
+	registerWithEmailAndPassword({
+		firstName,
+		lastName,
+		userName,
+		email,
+		password,
+	}: RegisterWithEmailAndPasswordParams): Promise<UserEntity>;
 }
