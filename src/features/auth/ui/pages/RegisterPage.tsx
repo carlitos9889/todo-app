@@ -1,5 +1,5 @@
 import { Input, Checkbox, Button } from "@nextui-org/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import {
   ConfirmPasswordIcon,
@@ -8,77 +8,15 @@ import {
   UserIcon,
 } from "../components";
 import { AuthLayout } from "../layouts";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useMutation } from "@tanstack/react-query";
-import { useMemo } from "react";
-import { AuthController } from "../controllers/authController";
-import { RegisterWithEmailAndPasswordParams } from "../../domain/interfaces/interfaces";
-import { useAuthStore } from "../store/authStore";
-
-interface FormRegister extends RegisterWithEmailAndPasswordParams {
-  confirmPassword: string;
-}
+import { useRegister } from "../hooks/useRegister";
+import { useCallback } from "react";
 
 export const RegisterPage = (): JSX.Element => {
-  const navigate = useNavigate();
-  const authController = useMemo(() => new AuthController(), []);
-  const registerWithEmailAndPassword = useAuthStore(
-    (state) => state.registerWithEmailAndPassword
-  );
-
-  const handleRegister = async (values: RegisterWithEmailAndPasswordParams) => {
-    const resp = await authController.registerWithEmailAndPassword({
-      ...values,
-    });
-
-    return resp;
-  };
-
-  const handleNotifyError = (message: string) => {
+  const handleNotifyError = useCallback((message: string) => {
     return toast.error(message);
-  };
+  }, []);
 
-  interface MyError extends Error {
-    errorcode: string;
-  }
-
-  const mutation = useMutation({
-    mutationKey: ["register"],
-    mutationFn: handleRegister,
-    onSuccess: (data) => {
-      registerWithEmailAndPassword(data);
-      navigate("/dashboard");
-    },
-    onError: (error: MyError) => {
-      handleNotifyError(error.errorcode);
-    },
-  });
-
-  const formik = useFormik<FormRegister>({
-    initialValues: {
-      userName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: Yup.object({
-      userName: Yup.string().required("Enter your userName"),
-      email: Yup.string()
-        .email("Invalid email")
-        .required("Enter your email please"),
-      password: Yup.string()
-        .required("Enter your password please")
-        .min(6, "Too short, minimum 6 characters"),
-      confirmPassword: Yup.string().oneOf(
-        [Yup.ref("password")],
-        "Passwords must match"
-      ),
-    }),
-    onSubmit: (values) => {
-      mutation.mutate(values);
-    },
-  });
+  const { formik, mutation } = useRegister({ handleNotifyError });
 
   return (
     <div className="h-screen w-screen flex justify-center items-center">
