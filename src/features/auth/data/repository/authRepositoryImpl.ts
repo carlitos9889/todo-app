@@ -5,6 +5,9 @@ import { RegisterWithEmailAndPasswordParams } from "../../domain/interfaces/inte
 
 export class AuthRepositoryImpl implements AuthRepository {
   constructor(private remoteDataSource: RemoteDataSource) {}
+  onAuthStateChanged(): Promise<UserEntity> {
+    return this.remoteDataSource.onAuthStateChanged();
+  }
 
   registerWithEmailAndPassword(
     params: RegisterWithEmailAndPasswordParams

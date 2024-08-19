@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -36,6 +37,25 @@ export class FirebaseDataSource implements RemoteDataSource {
     this.auth = getAuth(this.app);
     this.db = getFirestore(this.app);
   }
+
+  onAuthStateChanged() {
+    return new Promise<UserEntity>((resolve, reject) => {
+      onAuthStateChanged(this.auth, (user) => {
+        if (user) {
+          const userFirebase = new FirebaseModel(
+            user.uid,
+            user.email || "",
+            user.displayName || "",
+            user.photoURL || ""
+          );
+          resolve(userFirebase);
+        } else {
+          reject(null);
+        }
+      });
+    });
+  }
+
   registerWithEmailAndPassword(
     params: RegisterWithEmailAndPasswordParams
   ): Promise<UserEntity> {

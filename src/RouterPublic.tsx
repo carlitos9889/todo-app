@@ -1,10 +1,9 @@
-import { useAuthStore } from "./features/auth/ui/store/authStore";
+import { useCheckLogin } from "./features/auth/ui/hooks";
 import { Navigate, Outlet } from "react-router-dom";
 
 export const RouterPublic = () => {
-	const user = useAuthStore((state) => state.user);
+  const { user } = useCheckLogin();
+  if (user) return <Navigate to={"/"} />;
 
-	if (user) return <Navigate to={"/"} />;
-
-	return <Outlet />;
+  return <Outlet />;
 };

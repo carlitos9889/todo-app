@@ -11,6 +11,7 @@ interface UserActions {
   logout: () => void;
   signInWithPopupWithGooogle: (user: UserEntity) => void;
   registerWithEmailAndPassword: (user: UserEntity) => void;
+  onAuthStateChanged: (user: UserEntity) => void;
 }
 
 const userMiddleware = (f: StateCreator<UserState & UserActions>) =>
@@ -19,10 +20,10 @@ const userMiddleware = (f: StateCreator<UserState & UserActions>) =>
 export const useAuthStore = create<UserState & UserActions>()(
   userMiddleware((set) => ({
     user: undefined,
+    onAuthStateChanged: (user) => set({ user }),
     loginWithEmailAndPassword: (user) => set({ user }),
     logout: () => set((state) => ({ ...state, user: undefined })),
-    signInWithPopupWithGooogle: (user) => set((state) => ({ ...state, user })),
-    registerWithEmailAndPassword: (user) =>
-      set((state) => ({ ...state, user })),
+    signInWithPopupWithGooogle: (user) => set({ user }),
+    registerWithEmailAndPassword: (user) => set({ user }),
   }))
 );
