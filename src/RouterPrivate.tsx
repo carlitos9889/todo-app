@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { NavBar } from "./features/dashboard/ui/components";
+import { NavBar, NavBarSide } from "./features/dashboard/ui/components";
 
 export const RouterPrivate = () => {
   return (
     <>
       {/* do something */}
-      <NavBar />
-      <Outlet />
+      <div className="flex flex-col min-h-screen">
+        <NavBar />
+        <NavBarSide>
+          <Outlet />
+        </NavBarSide>
+      </div>
     </>
   );
 };
