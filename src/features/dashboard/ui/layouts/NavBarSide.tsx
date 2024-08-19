@@ -1,5 +1,5 @@
 import { Avatar } from "@nextui-org/react";
-import { FC, PropsWithChildren, useMemo } from "react";
+import { FC, PropsWithChildren } from "react";
 
 import {
   DashboardIcon,
@@ -13,28 +13,10 @@ import {
 } from "../components";
 import { NavLayout } from ".";
 import AccountDashboard from "../components/AccountDashboard";
-import { AuthController } from "../../../auth/ui/controllers/authController";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { useAuthStore } from "../../../auth/ui/store/authStore";
+import { useLogout } from "../hooks";
 
 export const NavBarSide: FC<PropsWithChildren> = ({ children }) => {
-  const authController = useMemo(() => new AuthController(), []);
-  const logout = useAuthStore((state) => state.logout);
-  const user = useAuthStore((state) => state.user);
-  const navigate = useNavigate();
-
-  const mutation = useMutation({
-    mutationKey: ["logout"],
-    mutationFn: () => authController.logout(),
-    onSuccess: () => {
-      logout();
-      navigate("/auth/login", { replace: true });
-    },
-    onError: (e) => {
-      console.log({ e });
-    },
-  });
+  const { user, mutation } = useLogout();
 
   return (
     <div className="flex-grow grid grid-cols-3">
