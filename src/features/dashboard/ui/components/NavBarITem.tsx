@@ -1,17 +1,30 @@
-import { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren } from "react";
+import { NavLink } from "react-router-dom";
 
+interface PropsIcon {
+  color?: string;
+}
 interface Props extends PropsWithChildren {
   name: string;
-  icon: JSX.Element;
+  Icon: React.ComponentType<PropsIcon>;
   href?: string;
 }
 
-export const NavBarItem: FC<Props> = ({ children, name, icon }) => {
+export const NavBarItem: FC<Props> = ({ children, name, Icon, href }) => {
   return (
-    <li className="flex gap-3">
-      <span className="w-[8%]">{icon}</span>
-      {name}
-      {children}
+    <li>
+      <NavLink
+        to={href || "/"}
+        className={({ isActive }) => (isActive ? "navLinkSelected" : "navLink")}
+      >
+        {({ isActive }) => (
+          <>
+            <Icon color={isActive ? "#FF6767" : "white"} />
+            {name}
+            {children}
+          </>
+        )}
+      </NavLink>
     </li>
   );
 };

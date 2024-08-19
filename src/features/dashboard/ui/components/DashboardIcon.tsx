@@ -1,4 +1,10 @@
-export const DashboardIcon = () => {
+import { FC } from "react";
+
+interface Props {
+  color?: string;
+}
+
+export const DashboardIcon: FC<Props> = ({ color }) => {
   return (
     <svg
       width="24"
@@ -9,7 +15,7 @@ export const DashboardIcon = () => {
     >
       <path
         d="M13.3333 8V0H24V8H13.3333ZM0 13.3333V0H10.6667V13.3333H0ZM13.3333 24V10.6667H24V24H13.3333ZM0 24V16H10.6667V24H0Z"
-        fill="white"
+        fill={color || "white"}
       />
     </svg>
   );
