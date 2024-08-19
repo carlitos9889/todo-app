@@ -1,17 +1,19 @@
 import { FirebaseDataSource } from "../../data/dataSources/remoteDataSource/firebaseDataSource";
 import { AuthRepositoryImpl } from "../../data/repository/authRepositoryImpl";
-import { SignInWithPopupWithGooogleUseCase } from "../../domain/useCases/SignInWithPopupWithGooogleUseCase";
-import { RegisterWithEmailAndPasswordUseCase } from "../../domain/useCases/RegisterWithEmailAndPasswordUseCase";
 import { RegisterWithEmailAndPasswordParams } from "../../domain/interfaces/interfaces";
 import {
   LoginWithEmailAndPassword,
   LogoutUseCase,
+  OnAuthStateChangedUseCase,
+  RegisterWithEmailAndPasswordUseCase,
+  SignInWithPopupWithGooogleUseCase,
 } from "../../domain/useCases";
 
 export class AuthController {
   loginWithEmailAndPasswordUseCase: LoginWithEmailAndPassword;
   signInWithPopupWithGooogleUseCase: SignInWithPopupWithGooogleUseCase;
   registerWithEmailAndPasswordUseCase: RegisterWithEmailAndPasswordUseCase;
+  onAuthStateChangedUseCase: OnAuthStateChangedUseCase;
   logoutUseCase: LogoutUseCase;
   authRepository: AuthRepositoryImpl;
   remoteDatasource: FirebaseDataSource;
@@ -22,12 +24,17 @@ export class AuthController {
     this.loginWithEmailAndPasswordUseCase = new LoginWithEmailAndPassword(
       this.authRepository
     );
+
     this.logoutUseCase = new LogoutUseCase(this.authRepository);
     this.signInWithPopupWithGooogleUseCase =
       new SignInWithPopupWithGooogleUseCase(this.authRepository);
 
     this.registerWithEmailAndPasswordUseCase =
       new RegisterWithEmailAndPasswordUseCase(this.authRepository);
+
+    this.onAuthStateChangedUseCase = new OnAuthStateChangedUseCase(
+      this.authRepository
+    );
   }
 
   async loginWithEmailAndPassword(email: string, password: string) {
@@ -48,5 +55,9 @@ export class AuthController {
     return await this.registerWithEmailAndPasswordUseCase.execute({
       ...params,
     });
+  }
+
+  async onAuthStateChanged() {
+    return await this.onAuthStateChangedUseCase.execute();
   }
 }

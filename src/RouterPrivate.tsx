@@ -1,7 +1,13 @@
-import { Outlet } from "react-router-dom";
-import { NavBar, NavBarSide } from "./features/dashboard/ui/components";
+import { Navigate, Outlet } from "react-router-dom";
+import { NavBarSide } from "./features/dashboard/ui/layouts";
+import { NavBar } from "./features/dashboard/ui/components";
+import { useCheckLogin } from "./features/auth/ui/hooks";
 
 export const RouterPrivate = () => {
+  const { user } = useCheckLogin();
+
+  if (!user) return <Navigate to="/auth/login" />;
+
   return (
     <>
       {/* do something */}

@@ -2,7 +2,7 @@ export { Header as NavBar } from "./Header";
 export { SearchIcon as SearchIcon } from "./SearchIcon";
 export { NotificationsIcon as NotificationsIcon } from "./NotificationsIcon";
 export { CalendarioIcon as CalendarioIcon } from "./CalendarioIcon";
-export { NavBarSide as NavBarSide } from "./NavBarSide";
+export { NavBarSide as NavBarSide } from "../layouts/NavBarSide";
 export { VitalTaskIcon as VitalTaskIcon } from "./VitalTaskIcon";
 export { TaskCategoryIcon as TaskCategoryIcon } from "./TaskCategoryIcon";
 export { SettingsIcon as SettingsIcon } from "./SettingsIcon";
