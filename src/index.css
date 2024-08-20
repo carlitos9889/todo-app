@@ -13,3 +13,9 @@
         @apply bg-white text-primary rounded-lg py-4 px-3 transition-colors duration-200 flex gap-3
     }
 }
+
+@layer components {
+    .card-layout {
+        @apply bg-[#F5F8FF] rounded-md p-6 shadow-lg;
+    }
+}

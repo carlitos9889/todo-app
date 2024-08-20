@@ -1,20 +1,20 @@
-import { Button } from "@nextui-org/react";
-import { useAuthStore } from "../../../auth/ui/store/authStore";
+import { TaskCardsLayout } from "../layouts";
+
 export const DashBoardPage = (): JSX.Element => {
-  const user = useAuthStore((state) => state.user);
-
   return (
-    <div className="grid place-content-center">
-      <h1>DashBoardPage</h1>
-
-      {user && (
-        <div>
-          <h2>User</h2>
-          <p>{user.email}</p>
-          <p>{user.name}</p>
-          <Button className="">LOgout</Button>
+    <div className="w-full h-full flex flex-col justify-center items-start">
+      <header className="py-5">
+        <h1 className="text-4xl">Welcome back, Carlos</h1>
+      </header>
+      <div className="h-5/6 w-[90%] max-h-[640px] rounded-md border-1 shadow-sm border-[#A1A3AB] grid grid-cols-2 gap-3 grid-rows-2 px-4">
+        <TaskCardsLayout />
+        <div className="row-span-1 flex justify-center">
+          body body body body
         </div>
-      )}
+        <div className="row-span-1 flex justify-center">
+          body body body body
+        </div>
+      </div>
     </div>
   );
 };
