@@ -2,22 +2,19 @@ import { create, StateCreator } from "zustand";
 import { UserEntity } from "../../domain/entities/UserEntity";
 import { devtools, persist } from "zustand/middleware";
 
-interface UserState {
+export type UserStateStore = {
   user?: UserEntity;
-}
-
-interface UserActions {
   loginWithEmailAndPassword: (user: UserEntity) => void;
   logout: () => void;
   signInWithPopupWithGooogle: (user: UserEntity) => void;
   registerWithEmailAndPassword: (user: UserEntity) => void;
   onAuthStateChanged: (user: UserEntity) => void;
-}
+};
 
-const userMiddleware = (f: StateCreator<UserState & UserActions>) =>
+const userMiddleware = (f: StateCreator<UserStateStore>) =>
   devtools(persist(f, { name: "userStore" }));
 
-export const useAuthStore = create<UserState & UserActions>()(
+export const useAuthStore = create<UserStateStore>()(
   userMiddleware((set) => ({
     user: undefined,
     onAuthStateChanged: (user) => set({ user }),
