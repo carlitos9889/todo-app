@@ -1,7 +1,7 @@
 import { Input } from "@nextui-org/react";
-import { SearchIcon } from "./SearchIcon";
-import { NotificationsIcon } from "./NotificationsIcon";
-import { CalendarioIcon } from "./CalendarioIcon";
+import { SearchIcon } from "./icons/SearchIcon";
+import { NotificationsIcon } from "./icons/NotificationsIcon";
+import { CalendarioIcon } from "./icons/CalendarioIcon";
 import { useDate } from "../hooks";
 
 export const Header = () => {

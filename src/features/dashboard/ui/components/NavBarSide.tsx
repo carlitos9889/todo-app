@@ -6,14 +6,42 @@ import {
   HelpIcon,
   LogoutIcon,
   MyTaskIcon,
-  NavBarItem,
   SettingsIcon,
   TaskCategoryIcon,
   VitalTaskIcon,
-} from "../components";
-import { NavLayout } from ".";
-import AccountDashboard from "../components/AccountDashboard";
+} from ".";
+import { NavLayout } from "../layouts";
+import AccountDashboard from "./AccountDashboard";
 import { useLogout } from "../hooks";
+import { NavLink } from "react-router-dom";
+
+interface PropsIcon {
+  color?: string;
+}
+interface Props extends PropsWithChildren {
+  name: string;
+  Icon: React.ComponentType<PropsIcon>;
+  href?: string;
+}
+
+const NavBarItem: FC<Props> = ({ children, name, Icon, href }) => {
+  return (
+    <li>
+      <NavLink
+        to={href || "/"}
+        className={({ isActive }) => (isActive ? "navLinkSelected" : "navLink")}
+      >
+        {({ isActive }) => (
+          <>
+            <Icon color={isActive ? "#FF6767" : "white"} />
+            {name}
+            {children}
+          </>
+        )}
+      </NavLink>
+    </li>
+  );
+};
 
 export const NavBarSide: FC<PropsWithChildren> = ({ children }) => {
   const { user, mutation } = useLogout();
