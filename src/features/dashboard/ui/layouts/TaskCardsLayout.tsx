@@ -2,7 +2,7 @@ import { IconWithTitle, TodoIcon, AddIcon, TaskCard } from "../components";
 
 export const TaskCardsLayout = () => {
   return (
-    <div className="row-span-2 justify-self-center self-center card-layout w-full h-[95%]">
+    <div className="row-span-3 justify-self-center self-center card-layout w-full h-[95%]">
       <section className="flex justify-between w-full">
         <IconWithTitle>
           <TodoIcon />

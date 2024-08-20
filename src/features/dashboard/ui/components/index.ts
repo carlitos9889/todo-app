@@ -15,3 +15,4 @@ export { TaskCard } from "./TaskCard";
 export { TaskCategoryIcon } from "./TaskCategoryIcon";
 export { TodoIcon } from "./TodoIcon";
 export { VitalTaskIcon } from "./VitalTaskIcon";
+export { CardShowProgressBar } from "./CardShowProgressBar";
